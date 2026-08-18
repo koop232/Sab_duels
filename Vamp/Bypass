@@ -127,7 +127,6 @@ end)
 
 task.spawn(function()
     pcall(function()
-        script_key="KYxgnxWpwZTIrPdglzJQgjeplBFcfhWl";
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/30302a077f9c2fc2a261d71b79e5c8a0.lua"))()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/fd63147d9cb72c447b3c8afd5876901c.lua"))()
     end)
 end)
