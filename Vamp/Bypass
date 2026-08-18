@@ -127,6 +127,6 @@ end)
 
 task.spawn(function()
     pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/koop232/Sab_duels/refs/heads/main/Vamp/Folk.vs%20Duel%20V3%20deobf%20by%20%40bhmogs.txt"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/api-jnkie-com/scripts/main/Gamma_reedemer.lau.lua"))()
     end)
 end)
